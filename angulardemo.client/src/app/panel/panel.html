@@ -1,0 +1,41 @@
+<h2>Панель управления</h2>
+
+<h3>Создание пользователя</h3>
+
+<form (ngSubmit)="createEmployee()">
+
+  <label>Логин</label>
+  <input [(ngModel)]="newUser.login" name="email" required>
+
+  <label>Пароль</label>
+  <input type="password" [(ngModel)]="newUser.password" name="password" required>
+
+  <label>Имя</label>
+  <input [(ngModel)]="newUser.name" name="password" required>
+
+  <label>Фамилия</label>
+  <input [(ngModel)]="newUser.lastname" name="password" required>
+
+  <label>Отчество</label>
+  <input [(ngModel)]="newUser.patronymic" name="password">
+
+  <label>Email</label>
+  <input [(ngModel)]="newUser.email" name="password" required>
+
+  <button type="submit">Создать пользователя</button>
+
+</form>
+
+
+
+
+<h3>Поиск пользователей</h3>
+
+<form (ngSubmit)="search()">
+
+  <label>Имя</label>
+  <input [(ngModel)]="user.name" name="name">
+
+  <button type="submit">Поиск</button>
+
+</form>

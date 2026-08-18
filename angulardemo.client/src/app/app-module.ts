@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -11,6 +11,7 @@ import { Panel } from './panel/panel';
 import { providePrimeNG } from 'primeng/config';
 import { ButtonModule } from 'primeng/button';
 import Aura from '@primeuix/themes/aura';
+import { AuthInterceptor } from './_services/auth-interceptor';
 
 @NgModule({
   declarations: [App, Login, Panel],
@@ -22,6 +23,12 @@ import Aura from '@primeuix/themes/aura';
         preset: Aura,
       },
     }),
+    provideHttpClient(
+    // DI-based interceptors must be explicitly enabled.
+      withInterceptorsFromDi(),
+    ),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+
 
   ],
   bootstrap: [App],
